@@ -1,16 +1,17 @@
-import React from 'react'
-import './App.css';
-import Header from "./Components/Header/Header";
+import React, { useState } from 'react'
 import {Routes, Route} from "react-router-dom";
+import 'antd/dist/antd.css'
+
+import Header from "./Components/Header/Header";
 import RegPage from "./Components/pages/RegPage/RegPage";
 import HomePage from "./Components/pages/HomePage/HomePage";
 import LoginPage from "./Components/pages/LoginPage/LoginPage";
-import {useState} from "react";
-import { isAuthContext } from './Context/Context'
 import UsersPage from "./Components/pages/UsersPage/UsersPage";
-import 'antd/dist/antd.css'
 import RegSuccess from "./Components/pages/RegSuccess/RegSuccess";
 import UserPage from "./Components/pages/UserPage/UserPage";
+import WeatherPage from "./Components/pages/WeatherPage/WeatherPage";
+import { isAuthContext } from './Context/Context'
+import './App.css';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
                   <Route path='/login' element={ <LoginPage /> }/>
                   <Route path='/users' element={ <UsersPage /> } />
                   <Route path='/user/:id' element={<UserPage />}/>
+                  <Route path='/weather' element={<WeatherPage />}/> 
                   <Route path='/success' element={ <RegSuccess /> } />
               </Routes>
           </div>

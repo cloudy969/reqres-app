@@ -1,5 +1,4 @@
 import axios from "axios";
-import logoutBlock from "../Components/Header/LogoutBlock/LogoutBlock";
 
 const instance = axios.create({
     baseURL: 'https://reqres.in/api/'
