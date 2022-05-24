@@ -2,14 +2,15 @@ import React from 'react'
 import './App.css';
 import Header from "./Components/Header/Header";
 import {Routes, Route} from "react-router-dom";
-import RegPage from "./Components/RegPage/RegPage";
-import HomePage from "./Components/HomePage/HomePage";
-import LoginPage from "./Components/LoginPage/LoginPage";
+import RegPage from "./Components/pages/RegPage/RegPage";
+import HomePage from "./Components/pages/HomePage/HomePage";
+import LoginPage from "./Components/pages/LoginPage/LoginPage";
 import {useState} from "react";
 import { isAuthContext } from './Context/Context'
-import UsersPage from "./Components/UsersPage/UsersPage";
+import UsersPage from "./Components/pages/UsersPage/UsersPage";
 import 'antd/dist/antd.css'
-import RegSuccess from "./Components/RegPage/RegSuccess/RegSuccess";
+import RegSuccess from "./Components/pages/RegSuccess/RegSuccess";
+import UserPage from "./Components/pages/UserPage/UserPage";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                   <Route path='/register' element={ <RegPage /> } />
                   <Route path='/login' element={ <LoginPage /> }/>
                   <Route path='/users' element={ <UsersPage /> } />
+                  <Route path='/user/:id' element={<UserPage />}/>
                   <Route path='/success' element={ <RegSuccess /> } />
               </Routes>
           </div>

@@ -6,10 +6,6 @@ const Navbar = () => {
     return (
         <nav>
             <NavLink className={style.link} to={'/users'}> Все пользователи </NavLink>
-            <NavLink className={style.link} to={'/users'}> 2 </NavLink>
-            <NavLink className={style.link} to={'/users'}> 3 </NavLink>
-            <NavLink className={style.link} to={'/users'}> 4 </NavLink>
-            <NavLink className={style.link} to={'/users'}> 5 </NavLink>
         </nav>
     );
 };

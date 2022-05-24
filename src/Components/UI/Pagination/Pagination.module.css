@@ -10,9 +10,15 @@
 .btn {
     background-color: transparent;
     padding: 10px;
+    cursor: pointer;
+    border: 0;
 }
 
 .arrow {
     padding: 0;
+}
+
+.disabledArrow {
+    visibility: hidden;
 }
 

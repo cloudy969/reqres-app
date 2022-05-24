@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Table } from "antd";
 
-import { API } from "../../../API/API";
+import { API } from "../../../../API/API";
 import style from "./UserList.module.css";
-import Pagination from "../../UI/Pagination/Pagination";
+import Pagination from "../../../UI/Pagination/Pagination";
 
 const UsersList = ({
   users,
@@ -22,13 +22,16 @@ const UsersList = ({
       title: "Аватар",
       dataIndex: "avatar",
       key: "avatar",
-      render: (url) => <img className={style.userAvatar} src={url} />,
+      render: (url) => (
+        <NavLink to="/user/1">
+          <img className={style.userAvatar} src={url} />
+        </NavLink>
+      ),
     },
     {
       title: "Имя",
       dataIndex: "first_name",
       key: "first_name",
-      render: (name) => <a href="#">{name}</a>,
     },
     {
       title: "Фамилия",
@@ -55,6 +58,12 @@ const UsersList = ({
   return (
     <div>
       <Table
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: () => navigate(`/user/${record.id}`),
+          };
+        }}
+        rowClassName={style.row}
         className={style.wrapper}
         columns={columns}
         dataSource={dataSource}
@@ -70,5 +79,4 @@ const UsersList = ({
     </div>
   );
 };
-
 export default UsersList;

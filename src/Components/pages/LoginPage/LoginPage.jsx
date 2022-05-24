@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
-import MyForm from "../UI/MyForm/MyForm";
+import MyForm from "../../UI/MyForm/MyForm";
 import { useNavigate } from "react-router-dom";
-import { API } from "../../API/API";
-import {isAuthContext} from "../../Context/Context";
+import { API } from "../../../API/API";
+import {isAuthContext} from "../../../Context/Context";
 
 const LoginPage = () => {
 

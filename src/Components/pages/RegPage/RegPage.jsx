@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { API } from '../../API/API'
-import RegForm from "../UI/RegForm/RegForm";
+import { API } from '../../../API/API'
+import RegForm from "../../UI/RegForm/RegForm";
 
 const RegPage = () => {
 

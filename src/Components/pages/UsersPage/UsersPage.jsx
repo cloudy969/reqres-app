@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { API } from "../../API/API";
+import { API } from "../../../API/API";
 import UsersList from "./UsersList/UsersList";
-import {set} from "react-hook-form";
 
 const UsersPage = () => {
   const location = useLocation();
@@ -15,7 +14,6 @@ const UsersPage = () => {
     pageSize: 10,
   });
   const [page, setPage] = useState(parseInt(pageNumber));
-
 
   useEffect(async () => {
     setPage(parseInt(pageNumber));
