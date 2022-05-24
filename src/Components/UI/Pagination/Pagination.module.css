@@ -1,0 +1,18 @@
+.wrapper {
+    width: 200px;
+    margin: 0 auto 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    background-color: transparent;
+    padding: 10px;
+}
+
+.arrow {
+    padding: 0;
+}
+
