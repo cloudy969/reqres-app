@@ -10,6 +10,7 @@ import UsersPage from "./Components/pages/UsersPage/UsersPage";
 import RegSuccess from "./Components/pages/RegSuccess/RegSuccess";
 import UserPage from "./Components/pages/UserPage/UserPage";
 import WeatherPage from "./Components/pages/WeatherPage/WeatherPage";
+import Calculator from "./Components/pages/Calculator/Calculator";
 import { isAuthContext } from './Context/Context'
 import './App.css';
 
@@ -29,6 +30,7 @@ function App() {
                   <Route path='/user/:id' element={<UserPage />}/>
                   <Route path='/weather' element={<WeatherPage />}/> 
                   <Route path='/success' element={ <RegSuccess /> } />
+                  <Route path='/calc' element={<Calculator />}/>
               </Routes>
           </div>
       </isAuthContext.Provider>

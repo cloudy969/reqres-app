@@ -1,0 +1,21 @@
+.wrapper {
+    width: 35%;
+    text-align: center;
+}
+
+.paragraph {
+    margin: 0;
+}
+
+.list {
+    text-align: left;
+    font-size: 16px;
+}
+
+.item {
+    margin-bottom: 15px;
+}
+
+.btn {
+    width: 100%;
+}

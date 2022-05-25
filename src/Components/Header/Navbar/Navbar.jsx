@@ -7,6 +7,7 @@ const Navbar = () => {
         <nav>
             <NavLink className={style.link} to={'/users'}> Все пользователи </NavLink>
             <NavLink className={style.link} to={'/weather'}>Погода</NavLink>
+            <NavLink className={style.link} to={'/calc'}>Калькулятор</NavLink>
         </nav>
     );
 };
