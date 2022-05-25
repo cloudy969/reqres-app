@@ -1,14 +1,20 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
-import style from "../Header.module.css";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Button } from "antd";
+
+import style from './AuthBlock.module.css';
 
 const AuthBlock = () => {
-    return (
-        <>
-            <NavLink className={style.link} to='/register' > Зарегистрироваться </NavLink>
-            <NavLink className={style.link} to='/login' > Войти </NavLink>
-        </>
-    );
+  return (
+    <div className={style.wrapper}>
+      <NavLink to="/register">
+        <Button type="primary">Зарегистрироваться</Button>
+      </NavLink>
+      <NavLink to="/login">
+        <Button type="primary">Войти</Button>
+      </NavLink>
+    </div>
+  );
 };
 
 export default AuthBlock;

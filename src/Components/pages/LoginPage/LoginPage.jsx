@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import MyForm from "../../UI/MyForm/MyForm";
+import LoginForm from "../../UI/LoginForm/LoginForm";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../../API/API";
 import {isAuthContext} from "../../../Context/Context";
@@ -21,7 +21,7 @@ const LoginPage = () => {
     return (
             <>
                 <h2>Авторизация</h2>
-                <MyForm sendData={sendData}/>
+                <LoginForm sendData={sendData}/>
             </>
         );
     };

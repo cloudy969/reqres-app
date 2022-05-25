@@ -1,17 +1,24 @@
-import React from 'react';
-import {useNavigate} from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "antd";
 
-const LogoutBlock = ({setIsAuth}) => {
+const LogoutBlock = ({ setIsAuth }) => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        localStorage.removeItem('token')
-        setIsAuth(false)
-        navigate('/login')
+  const handleLogout = () => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('Вы уверены?')) {
+      localStorage.removeItem("token");
+      setIsAuth(false);
+      navigate("/login");
     }
+  };
 
-    return <button onClick={handleLogout} className='btn'>Выйти</button>
+  return (
+    <Button type="danger" onClick={handleLogout}>
+      Выйти
+    </Button>
+  );
 };
 
 export default LogoutBlock;

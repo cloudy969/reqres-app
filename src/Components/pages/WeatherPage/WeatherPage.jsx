@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Input, Button } from "antd";
 
 import style from "./WeatherPage.module.css";
 import weatherAPI from "../../../API/weatherAPI";
@@ -21,14 +22,16 @@ const WeatherPage = () => {
     <div>
       <h1>Прогноз погоды</h1>
       <form className={style.form} onSubmit={handleSubmit}>
-        <input
+        <Input
+          className={style.input}
           placeholder="Введите название города"
           value={queryText}
           onChange={(e) => setQueryText(e.target.value)}
         />
-        <button>Найти</button>
+        <Button type="primary" disabled={!queryText ? true : false}>
+          Найти
+        </Button>
       </form>
-      <h2>{data.name}</h2>
     </div>
   );
 };

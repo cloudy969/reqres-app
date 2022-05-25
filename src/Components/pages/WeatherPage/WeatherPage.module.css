@@ -1,3 +1,9 @@
 .form {
+    display: flex;
+    justify-content: space-between;
     text-align: center;
+}
+
+.input {
+    width: 90%;
 }
