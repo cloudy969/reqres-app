@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import {Routes, Route} from "react-router-dom";
+import {Provider} from "react-redux";
 import 'antd/dist/antd.css'
 
+import store from "./redux/store";
 import Header from "./Components/Header/Header";
 import RegPage from "./Components/pages/RegPage/RegPage";
 import HomePage from "./Components/pages/HomePage/HomePage";
@@ -19,21 +21,24 @@ function App() {
     const [isAuth, setIsAuth] = useState(localStorage.getItem('token') ? true : false);
 
   return(
-      <isAuthContext.Provider value={[isAuth, setIsAuth]}>
-          <Header />
-          <div className='container'>
-              <Routes>
-                  <Route path='/home' element={ <HomePage /> }/>
-                  <Route path='/register' element={ <RegPage /> } />
-                  <Route path='/login' element={ <LoginPage /> }/>
-                  <Route path='/users' element={ <UsersPage /> } />
-                  <Route path='/user/:id' element={<UserPage />}/>
-                  <Route path='/weather' element={<WeatherPage />}/> 
-                  <Route path='/success' element={ <RegSuccess /> } />
-                  <Route path='/calc' element={<Calculator />}/>
-              </Routes>
-          </div>
-      </isAuthContext.Provider>
+      <Provider store={store}>
+          <isAuthContext.Provider value={[isAuth, setIsAuth]}>
+              <Header />
+              <div className='container'>
+                  <Routes>
+                      <Route path='/home' element={ <HomePage /> }/>
+                      <Route path='/register' element={ <RegPage /> } />
+                      <Route path='/login' element={ <LoginPage /> }/>
+                      <Route path='/users' element={ <UsersPage /> } />
+                      <Route path='/user/:id' element={<UserPage />}/>
+                      <Route path='/weather' element={<WeatherPage />}/>
+                      <Route path='/success' element={ <RegSuccess /> } />
+                      <Route path='/calc' element={<Calculator />}/>
+                  </Routes>
+              </div>
+          </isAuthContext.Provider>
+      </Provider>
+
     );
 }
 
