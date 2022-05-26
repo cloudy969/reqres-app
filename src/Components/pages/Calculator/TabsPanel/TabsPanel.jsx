@@ -1,22 +1,23 @@
 import React from "react";
 import { Tabs } from "antd";
 
-import style from './TabsPanel.module.css'
-import FormBlock from "../FormBlock/FormBlock";
+import EstatePriceCalculator from "../EstatePriceCalculator/EstatePriceCalculator";
+import CreditCalculator from "../CreditCalculator/CreditCalculator";
+import PaymentCalculator from "../PaymentCalculator/PaymentCalculator";
 
 const { TabPane } = Tabs;
 
 const TabsPanel = () => {
   return (
-    <Tabs className={style.panel}  defaultActiveKey="1" >
+    <Tabs style={{ width: "100%" }} defaultActiveKey="1">
       <TabPane tab="Недвижимость" key="1">
-        <FormBlock />
+        <EstatePriceCalculator />
       </TabPane>
       <TabPane tab="Кредит" key="2">
-        Content of Tab Pane 2
+        <CreditCalculator />
       </TabPane>
-      <TabPane tab="Платежи" key="3">
-        Content of Tab Pane 3
+      <TabPane tab="Платеж" key="3">
+        <PaymentCalculator />
       </TabPane>
     </Tabs>
   );

@@ -1,3 +1,6 @@
+.form {
+    width: 50%;
+}
 
 .slider {
     width: 400px;
@@ -6,6 +9,7 @@
 }
 
 .input {
+    position: relative;
     width: 400px;
 }
 

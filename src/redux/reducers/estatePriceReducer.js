@@ -1,7 +1,7 @@
 import {
   setCreditTerm,
   setEstatePrice,
-  setFirstPayment,
+  setFirstPayment, setInitialFirstPayment,
   setPercentage,
 } from "../actions/actionTypes";
 
@@ -12,7 +12,7 @@ const initialState = {
   percentage: 1,
 };
 
-export const calculatorReducer = (state = initialState, action) => {
+export const estatePriceReducer = (state = initialState, action) => {
   switch (action.type) {
     case setEstatePrice:
       return {
