@@ -10,20 +10,15 @@ import {
 } from "../../../../../redux/actions/estatePriceActions";
 import { InputNumber, Slider } from "antd";
 import ButtonList from "../../../../UI/ButtonList/ButtonList";
+import {
+  paymentButtons,
+  percentButtons,
+  termButtons,
+} from "./ButtonsData/ButtonsData";
 
 const EstatePriceForm = () => {
   const state = useSelector((state) => state.estatePrice);
   const dispatch = useDispatch();
-
-
-  const percentButtons = [
-    { id: 1, value: "0%" },
-    { id: 2, value: "10%" },
-    { id: 3, value: "15%" },
-    { id: 4, value: "20%" },
-    { id: 5, value: "25%" },
-    { id: 6, value: "30%" },
-  ];
 
   const changePrice = (newValue) => {
     dispatch(changeEstatePrice(newValue));
@@ -44,8 +39,22 @@ const EstatePriceForm = () => {
   };
 
   const chooseFirstPayment = (value) => {
-    dispatch(state.estatePrice * value.slice(0, -1) / 100)
-  }
+    let firstPayment = parseInt(
+      ((state.estatePrice * parseInt(value.slice(0, -1))) / 100).toFixed()
+    );
+    if (state.estatePrice - firstPayment > 500000)
+      dispatch(changeFirstPayment(firstPayment));
+  };
+
+  const chooseCreditTerm = (value) => {
+    let creditTerm = parseInt(value.substring(0, value.length - 4));
+    dispatch(changeCreditTerm(creditTerm));
+  };
+
+  const choosePercentage = (value) => {
+    let percentage = parseInt(value.slice(0, -1));
+    dispatch(changePercentage(percentage));
+  };
 
   return (
     <form className={style.form}>
@@ -120,7 +129,7 @@ const EstatePriceForm = () => {
             tipFormatter={null}
           />
         </div>
-        <ButtonList values={percentButtons} buttonAction={chooseFirstPayment} />
+        <ButtonList values={paymentButtons} buttonAction={chooseFirstPayment} />
       </label>
 
       <label>
@@ -147,6 +156,7 @@ const EstatePriceForm = () => {
             tipFormatter={null}
           />
         </div>
+        <ButtonList values={termButtons} buttonAction={chooseCreditTerm} />
       </label>
 
       <label>
@@ -168,12 +178,13 @@ const EstatePriceForm = () => {
             className={style.slider}
             min={1}
             max={30}
-            step={.1}
+            step={0.1}
             onChange={changePercentages}
             value={typeof state.percentage === "number" ? state.percentage : 1}
             tipFormatter={null}
           />
         </div>
+        <ButtonList values={percentButtons} buttonAction={choosePercentage} />
       </label>
     </form>
   );
