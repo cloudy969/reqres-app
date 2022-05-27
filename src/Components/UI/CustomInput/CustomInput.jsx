@@ -16,7 +16,7 @@ const CustomInput = ({ min, max, step, value, action }) => {
         max={max}
         step={step}
         controls={false}
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={(value) => handleChange(value)}
         formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
         value={
           (typeof value === "number" ? value : min) &&
