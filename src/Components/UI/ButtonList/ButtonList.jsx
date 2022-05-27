@@ -1,6 +1,7 @@
 import React from "react";
 
 import style from "./ButtonList.module.css";
+import {Button} from "antd";
 
 const ButtonList = ({ values, buttonAction }) => {
 
@@ -9,11 +10,11 @@ const ButtonList = ({ values, buttonAction }) => {
   }
 
   return (
-    <div className={style.wrapper}>
+    <div>
       {values.map((value) => (
-        <p className={style.paragraph} key={value.id} onClick={() => handleClick(value.value)}>
+        <Button type='primary' className={style.btn} key={value.id} onClick={() => handleClick(value.value)}>
           {value.value}
-        </p>
+        </Button>
       ))}
     </div>
   );

@@ -1,12 +1,6 @@
-.wrapper {
-    display: flex;
-    justify-content: space-between;
-}
-
-.paragraph {
-    margin: 0 0 5px;
+.btn {
+    display: inline-block;
+    margin: 0 10px 5px 0;
     padding: 2px 5px;
-    background-color: #fff;
-    border-radius: 10px;
-    cursor: pointer;
+    border-radius: 5px;
 }

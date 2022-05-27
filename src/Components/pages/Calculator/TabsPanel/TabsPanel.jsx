@@ -5,10 +5,10 @@ import EstatePriceCalculator from "../EstatePriceCalculator/EstatePriceCalculato
 import CreditCalculator from "../CreditCalculator/CreditCalculator";
 import PaymentCalculator from "../PaymentCalculator/PaymentCalculator";
 
-const { TabPane } = Tabs;
-
 const TabsPanel = () => {
-  return (
+    const { TabPane } = Tabs;
+
+    return (
     <Tabs style={{ width: "100%" }} defaultActiveKey="1">
       <TabPane tab="Недвижимость" key="1">
         <EstatePriceCalculator />

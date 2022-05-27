@@ -28,7 +28,7 @@ const ResultBlock = ({
   return (
     <div className={style.wrapper}>
       <p className={style.paragraph}>{title}</p>
-      <h1>{normalizedValue(summary)} ₽</h1>
+      <h2>{normalizedValue(summary)} ₽</h2>
       <ul className={style.list}>
         <li className={style.item}>Кредит: {normalizedValue(credit)} ₽</li>
         <li className={style.item}>
