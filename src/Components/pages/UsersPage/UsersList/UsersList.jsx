@@ -48,7 +48,7 @@ const UsersList = ({
 
   useEffect(async () => {
     const response = await API.getUsers(page);
-    setUsers(response.data.data);
+    setUsers(response.data);
 
     page === 1
       ? navigate("/users", { replace: true })

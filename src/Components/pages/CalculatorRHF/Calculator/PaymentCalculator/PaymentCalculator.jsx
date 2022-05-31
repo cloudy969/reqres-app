@@ -2,13 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import PaymentForm from "./PaymentForm/PaymentForm";
-import ResultBlock from "../../../UI/ResultBlock/ResultBlock";
 import {
   getChartData,
   getEstatePrice,
   getPercentages,
 } from "../Calculations/calculations";
-import Chart from "../../../UI/Chart/Chart";
+import ResultBlock from "../../../../UI/ResultBlock/ResultBlock";
+import Chart from "../../../../UI/Chart/Chart";
 
 const PaymentCalculator = () => {
   const state = useSelector((state) => state.paymentCalculator);

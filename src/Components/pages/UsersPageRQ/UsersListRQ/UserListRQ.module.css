@@ -1,0 +1,28 @@
+.wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.userAvatar {
+    height: 135px;
+    width: 135px;
+    border-radius: 5px;
+}
+
+.userAvatar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 100px;
+    bottom: 0;
+
+}
+
+.row {
+    cursor: pointer;
+}

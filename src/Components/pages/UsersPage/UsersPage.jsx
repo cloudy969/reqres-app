@@ -19,12 +19,12 @@ const UsersPage = () => {
     setPage(parseInt(pageNumber));
 
     const response = await API.getUsers(pageNumber);
-    setUsers(response.data.data);
+    console.log(response)
 
     setPaginationProps({
       ...paginationProps,
-      totalUsers: response.data.total,
-      pageSize: response.data.per_page,
+      totalUsers: response.total,
+      pageSize: response.per_page,
     });
   }, [pageNumber]);
 

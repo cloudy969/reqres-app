@@ -3,9 +3,10 @@ import { Button, Form, Input } from "antd";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import style from "./RegForm.module.css";
 
-const RegForm = ({ sendData }) => {
+import style from "./MyForm.module.css";
+
+const MyForm = ({ sendData }) => {
   const schema = yup.object({
     email: yup.string().email().required(),
     password: yup.string().required(),
@@ -33,7 +34,7 @@ const RegForm = ({ sendData }) => {
         control={control}
         render={({ field }) => (
           <>
-            <Input size="large" {...field} placeholder="Введите email" />
+            <Input type='email' size="large" {...field} placeholder="Введите email" />
             <p className={style.error}>{errors.email?.message}</p>
           </>
         )}
@@ -44,7 +45,7 @@ const RegForm = ({ sendData }) => {
         control={control}
         render={({ field }) => (
           <>
-            <Input size="large" {...field} placeholder="Введите пароль" />
+            <Input type='password' size="large" {...field} placeholder="Введите пароль" />
             <p className={style.error}>{errors.password?.message}</p>
           </>
         )}
@@ -63,4 +64,4 @@ const RegForm = ({ sendData }) => {
   );
 };
 
-export default RegForm;
+export default MyForm;

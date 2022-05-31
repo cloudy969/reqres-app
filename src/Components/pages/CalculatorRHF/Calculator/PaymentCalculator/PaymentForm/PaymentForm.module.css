@@ -1,0 +1,18 @@
+.form {
+    width: 50%;
+}
+
+.slider {
+    width: 400px;
+    margin: 0;
+    position: absolute;
+}
+
+.input {
+    position: relative;
+    width: 400px;
+}
+
+.wrapper {
+    margin-bottom: 20px;
+}
