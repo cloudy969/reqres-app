@@ -13,6 +13,7 @@ const MyForm = ({ sendData }) => {
   });
   const {
     control,
+    watch,
     formState: { errors },
     handleSubmit,
   } = useForm({
@@ -22,6 +23,9 @@ const MyForm = ({ sendData }) => {
     },
     resolver: yupResolver(schema),
   });
+
+  const dataValues = watch();
+  console.log(dataValues)
 
   const handleData = (data) => {
     sendData(data);
@@ -34,7 +38,12 @@ const MyForm = ({ sendData }) => {
         control={control}
         render={({ field }) => (
           <>
-            <Input type='email' size="large" {...field} placeholder="Введите email" />
+            <Input
+              type="email"
+              size="large"
+              {...field}
+              placeholder="Введите email"
+            />
             <p className={style.error}>{errors.email?.message}</p>
           </>
         )}
@@ -45,18 +54,19 @@ const MyForm = ({ sendData }) => {
         control={control}
         render={({ field }) => (
           <>
-            <Input type='password' size="large" {...field} placeholder="Введите пароль" />
+            <Input
+              type="password"
+              size="large"
+              {...field}
+              placeholder="Введите пароль"
+            />
             <p className={style.error}>{errors.password?.message}</p>
           </>
         )}
       />
 
       <Form.Item>
-        <Button
-          type="primary"
-          htmlType="submit"
-          size="large"
-        >
+        <Button type="primary" htmlType="submit" size="large">
           Отправить
         </Button>
       </Form.Item>

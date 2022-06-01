@@ -21,6 +21,7 @@ import {ReactQueryDevtools} from "react-query/devtools";
 import UserPageRQ from "./Components/pages/UserPageRQ/UserPageRQ";
 import WeatherPageRQ from "./Components/pages/WeatherPageRQ/WeatherPageRQ";
 import CalculatorRHF from "./Components/pages/CalculatorRHF/Calculator/CalculatorRHF";
+import Timer from "./Components/pages/Timer/Timer";
 
 function App() {
   const [isAuth, setIsAuth] = useState(
@@ -47,6 +48,7 @@ function App() {
               <Route path="/userRQ/:id" element={<UserPageRQ />} />
               <Route path="/weatherRQ" element={<WeatherPageRQ />} />
               <Route path="/calcRHF" element={<CalculatorRHF />} />
+              <Route path='/timer' element={<Timer />} />
             </Routes>
           </div>
         </isAuthContext.Provider>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import {useForm, Controller, useWatch} from "react-hook-form";
 import { useMutation } from "react-query";
 import { Input, Button } from "antd";
 
@@ -11,12 +11,15 @@ import Loader from "../../UI/Loader/Loader";
 const WeatherPageRQ = () => {
   const [weatherData, setWeatherData] = useState({});
 
-  const { control, reset, watch, handleSubmit, formState } = useForm({
+  const { control, reset, handleSubmit } = useForm({
     defaultValues: {
       cityName: "",
     },
   });
-  const currentCityName = watch('cityName');
+  const currentCityName = useWatch({
+    control,
+    name: 'cityName',
+  });
 
   const mutation = useMutation(
     (cityName) => weatherAPI.getWeatherByCity(cityName),

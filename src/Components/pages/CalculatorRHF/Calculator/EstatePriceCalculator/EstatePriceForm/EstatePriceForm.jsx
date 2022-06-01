@@ -1,10 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useForm, FormProvider } from "react-hook-form";
 
 import {
   changeCreditTerm,
   changeEstatePrice,
-  changeFirstPayment, changePercentage
+  changeFirstPayment,
+  changePercentage,
 } from "../../../../../../redux/actions/estatePriceActions";
 import {
   paymentButtons,
@@ -25,13 +27,23 @@ import {
 } from "../../Constants/constants";
 import ButtonList from "../../../../../UI/ButtonList/ButtonList";
 import style from "./EstatePriceForm.module.css";
-import CustomInput from "../../../../../UI/CustomInput/CustomInput";
 import ReactHookFormInput from "../../../../../UI/ReactHookFormInput/ReactHookFormInput";
-
 
 const EstatePriceForm = () => {
   const state = useSelector((state) => state.estatePrice);
   const dispatch = useDispatch();
+
+  const { control, watch } = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      estatePrice: state.estatePrice,
+      firstPayment: state.firstPayment,
+      creditTerm: state.creditTerm,
+      percentage: state.percentage,
+    }
+  });
+
+  console.log(watch())
 
   const changePrice = (newValue) => {
     dispatch(changeEstatePrice(newValue));
@@ -77,7 +89,8 @@ const EstatePriceForm = () => {
           step={estatePriceStep}
           action={changePrice}
           value={state.estatePrice}
-          inputName='estatePrice'
+          name="estatePrice"
+          control={control}
         />
       </label>
 
@@ -89,7 +102,8 @@ const EstatePriceForm = () => {
           step={firstPaymentStep}
           action={changePayment}
           value={state.firstPayment}
-          inputName='firstPayment'
+          name="firstPayment"
+          control={control}
         />
         <ButtonList values={paymentButtons} buttonAction={chooseFirstPayment} />
       </label>
@@ -101,7 +115,8 @@ const EstatePriceForm = () => {
           max={creditTermMax}
           action={changeTerm}
           value={state.creditTerm}
-          inputName='creditTerm'
+          name="creditTerm"
+          control={control}
         />
         <ButtonList values={termButtons} buttonAction={chooseCreditTerm} />
       </label>
@@ -114,7 +129,8 @@ const EstatePriceForm = () => {
           step={percentageStep}
           action={changePercentages}
           value={state.percentage}
-          inputName='percentage'
+          name="percentage"
+          control={control}
         />
         <ButtonList values={percentButtons} buttonAction={choosePercentage} />
       </label>
