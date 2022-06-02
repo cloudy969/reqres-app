@@ -19,7 +19,6 @@ const UsersPage = () => {
     setPage(parseInt(pageNumber));
 
     const response = await API.getUsers(pageNumber);
-    console.log(response)
 
     setPaginationProps({
       ...paginationProps,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useMemo} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm, FormProvider } from "react-hook-form";
 
@@ -34,16 +34,18 @@ const EstatePriceForm = () => {
   const dispatch = useDispatch();
 
   const { control, watch } = useForm({
-    mode: "onBlur",
+    mode: "onChange",
     defaultValues: {
       estatePrice: state.estatePrice,
       firstPayment: state.firstPayment,
       creditTerm: state.creditTerm,
       percentage: state.percentage,
-    }
+    },
   });
-
-  console.log(watch())
+  const estatePriceValue = watch("estatePrice");
+  const firstPaymentValue = watch("firstPayment");
+  const creditTermValue = watch("creditTerm");
+  const percentageValue = watch("percentage");
 
   const changePrice = (newValue) => {
     dispatch(changeEstatePrice(newValue));
@@ -52,15 +54,19 @@ const EstatePriceForm = () => {
     } else if (newValue <= state.firstPayment + estatePriceMin) {
       dispatch(changeFirstPayment(newValue - estatePriceMin));
     }
+    console.log('Цена недивжимости')
   };
   const changePayment = (newValue) => {
     dispatch(changeFirstPayment(newValue));
+    console.log('первый взнос')
   };
   const changeTerm = (newValue) => {
     dispatch(changeCreditTerm(newValue));
+    console.log('срок')
   };
   const changePercentages = (newValue) => {
     dispatch(changePercentage(newValue));
+    console.log('проценты')
   };
 
   const chooseFirstPayment = (value) => {
@@ -79,6 +85,29 @@ const EstatePriceForm = () => {
     dispatch(changePercentage(percentage));
   };
 
+  useEffect(() => {
+    changePrice(estatePriceValue);
+  }, [estatePriceValue]);
+
+  useEffect(() => {
+    changePayment(firstPaymentValue);
+  }, [firstPaymentValue])
+
+  useEffect(() => {
+    changeTerm(creditTermValue);
+  },[creditTermValue])
+
+  useEffect(() => {
+    changePercentages(percentageValue);
+  }, [percentageValue])
+
+  // useEffect(() => {
+  //   estatePriceValue !== state.estatePrice && changePrice(estatePriceValue);
+  //   firstPaymentValue !== state.firstPayment && changePayment(firstPaymentValue);
+  //   creditTermValue !== state.creditTerm && changeTerm(creditTermValue);
+  //   percentageValue !== state.percentage && changePercentages(percentageValue);
+  // }, [estatePriceValue, firstPaymentValue, creditTermValue, percentageValue])
+
   return (
     <form className={style.form}>
       <label>
@@ -87,7 +116,6 @@ const EstatePriceForm = () => {
           min={estatePriceMin}
           max={estatePriceMax}
           step={estatePriceStep}
-          action={changePrice}
           value={state.estatePrice}
           name="estatePrice"
           control={control}
@@ -100,7 +128,6 @@ const EstatePriceForm = () => {
           min={firstPaymentMin}
           max={state.estatePrice - estatePriceMin}
           step={firstPaymentStep}
-          action={changePayment}
           value={state.firstPayment}
           name="firstPayment"
           control={control}
@@ -113,7 +140,6 @@ const EstatePriceForm = () => {
         <ReactHookFormInput
           min={creditTermMin}
           max={creditTermMax}
-          action={changeTerm}
           value={state.creditTerm}
           name="creditTerm"
           control={control}
@@ -127,7 +153,6 @@ const EstatePriceForm = () => {
           min={percentageMin}
           max={percentageMax}
           step={percentageStep}
-          action={changePercentages}
           value={state.percentage}
           name="percentage"
           control={control}

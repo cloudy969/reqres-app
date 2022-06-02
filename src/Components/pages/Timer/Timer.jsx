@@ -1,57 +1,80 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { Button, InputNumber } from "antd";
 
 import style from "./Timer.module.css";
 
 const Timer = () => {
-  const [time, setTime] = useState("");
-  const [ratio, setRatio] = useState(0.99);
-  const { register, handleSubmit } = useForm();
+  const [seconds, setSeconds] = useState(0);
+  const [ratio, setRatio] = useState(0);
+  const [isActive, setIsActive] = useState(false);
 
-  const strokeDashArray = Number(2 * Math.PI * 100);
+  const { control, watch, handleSubmit } = useForm();
+  const settledTime = watch("timer");
 
-  // console.log(Math.pi)
+  const strokeDashArray = 2 * Math.PI * 100;
+
+  const onSubmit = (data) => {
+    setIsActive(false);
+    setRatio(1);
+    setSeconds(data.timer);
+  };
+
+  const toggleIsActive = () => {
+    setIsActive(!isActive);
+  };
+  const reset = () => {
+    setIsActive(false);
+    setSeconds(0);
+  };
 
   useEffect(() => {
-    setRatio(ratio - 0.1);
-  }, [time]);
-
-  const timer = () => {
-    if (time > 0) setTime(time - 1);
-  };
-  const stopTimer = () => clearInterval(timerId);
-
-  const timerId = setTimeout(timer, 1000);
-  const onSubmit = (data) => {
-    clearTimeout(timerId);
-    setTime(data.time);
-  };
+    let timer = null;
+    setRatio(ratio - (ratio - seconds / settledTime));
+    if (isActive) {
+      timer = setTimeout(() => {
+        setSeconds(seconds - 1);
+      }, 1000);
+    } else if (!isActive && seconds !== 0) {
+      clearTimeout(timer);
+    }
+    if (seconds == 0) {
+      clearTimeout(timer);
+      setIsActive(false);
+    }
+    return () => clearTimeout(timer);
+  }, [isActive, seconds]);
 
   return (
     <>
       <h1>Таймер</h1>
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-        <InputNumber
-          className={style.input}
-          {...register("time")}
-          placeHolder="Установите время"
-          controls={false}
-          type="number"
+        <Controller
+          name="timer"
+          control={control}
+          render={({ field }) => (
+            <InputNumber
+              required
+              className={style.input}
+              {...field}
+              placeholder="Введите количество секунд"
+              controls={false}
+              type="number"
+            />
+          )}
         />
         <Button htmlType="submit" type="primary">
-          Запустить
+          Установить время
         </Button>
       </form>
-      {time > 0 && (
-        <div>
+      <div>
+        <div className={style.timerWrapper}>
           <svg width="250" height="250" xmlns="http://www.w3.org/2000/svg">
             <circle
               className={style.circleBg}
               r="100"
               cy="125"
               cx="125"
-              stroke-width="2"
               fill="none"
             ></circle>
             <circle
@@ -63,21 +86,18 @@ const Timer = () => {
               r="100"
               cy="125"
               cx="125"
-              stroke-width="2"
               fill="none"
             ></circle>
           </svg>
-          <h1 className={style.label}>{time}</h1>
-          <div className={style.wrapper}>
-            <Button className={style.btn} type="danger" onClick={stopTimer}>
-              Стоп
-            </Button>
-            <Button type="success" onClick={timer}>
-              Пуск
-            </Button>
-          </div>
+          <h1 className={style.label}>{seconds}</h1>
         </div>
-      )}
+        <div className={style.wrapper}>
+          <Button className={style.btn} type="danger" onClick={toggleIsActive}>
+            {isActive ? "Пауза" : "Пуск"}
+          </Button>
+          <Button onClick={reset}>Сброс</Button>
+        </div>
+      </div>
     </>
   );
 };

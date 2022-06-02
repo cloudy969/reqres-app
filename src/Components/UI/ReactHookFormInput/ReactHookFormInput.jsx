@@ -2,41 +2,43 @@ import React from "react";
 import { InputNumber, Slider } from "antd";
 
 import style from "../../pages/Calculator/PaymentCalculator/PaymentForm/PaymentForm.module.css";
-import {useController} from "react-hook-form";
+import { useController } from "react-hook-form";
 
-const ReactHookFormInput = ({ min, max, step, value, action, control, name }) => {
-  const handleChange = (value) => {
-    action(value);
-  };
+const ReactHookFormInput = ({
+  min,
+  max,
+  step,
+  value,
+  action,
+  control,
+  name,
+}) => {
+  // const handleChange = (value) => {
+  //   action(value);
+  // };
 
-const {field} = useController({control, name})
+  const { field } = useController({ control, name });
 
   return (
     <div className={style.wrapper}>
       <InputNumber
-          {...field}
+        {...field}
         className={style.input}
-        // min={min}
-        // max={max}
-        // step={step}
+        min={min}
+        max={max}
         controls={false}
-        // onChange={(value) => handleChange(value)}
         formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
-        // value={
-        //   (typeof value === "number" ? value : min) &&
-        //   (value > max ? max : value )
-        // }
+        value={value}
         size="large"
         keyboard={false}
       />
       <Slider
-          {...field}
+        {...field}
         className={style.slider}
         min={min}
         max={max}
-        // onChange={(value) => handleChange(value)}
-        // value={typeof value === "number" ? value : min}
         step={step}
+        value={value}
         tipFormatter={null}
       />
     </div>

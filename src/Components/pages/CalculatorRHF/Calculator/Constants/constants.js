@@ -1,6 +1,6 @@
 export const estatePriceMin = 500000;
 export const estatePriceMax = 99999999;
-export const estatePriceStep = 200000;
+export const estatePriceStep = 20000;
 export const firstPaymentMin = 0;
 export const firstPaymentStep = 20000;
 export const creditTermMin = 1;
