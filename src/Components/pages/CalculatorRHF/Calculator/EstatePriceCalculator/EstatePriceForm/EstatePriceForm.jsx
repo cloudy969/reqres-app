@@ -54,19 +54,15 @@ const EstatePriceForm = () => {
     } else if (newValue <= state.firstPayment + estatePriceMin) {
       dispatch(changeFirstPayment(newValue - estatePriceMin));
     }
-    console.log('Цена недивжимости')
   };
   const changePayment = (newValue) => {
     dispatch(changeFirstPayment(newValue));
-    console.log('первый взнос')
   };
   const changeTerm = (newValue) => {
     dispatch(changeCreditTerm(newValue));
-    console.log('срок')
   };
   const changePercentages = (newValue) => {
     dispatch(changePercentage(newValue));
-    console.log('проценты')
   };
 
   const chooseFirstPayment = (value) => {
@@ -100,13 +96,6 @@ const EstatePriceForm = () => {
   useEffect(() => {
     changePercentages(percentageValue);
   }, [percentageValue])
-
-  // useEffect(() => {
-  //   estatePriceValue !== state.estatePrice && changePrice(estatePriceValue);
-  //   firstPaymentValue !== state.firstPayment && changePayment(firstPaymentValue);
-  //   creditTermValue !== state.creditTerm && changeTerm(creditTermValue);
-  //   percentageValue !== state.percentage && changePercentages(percentageValue);
-  // }, [estatePriceValue, firstPaymentValue, creditTermValue, percentageValue])
 
   return (
     <form className={style.form}>

@@ -24,9 +24,6 @@ const MyForm = ({ sendData }) => {
     resolver: yupResolver(schema),
   });
 
-  const dataValues = watch();
-  console.log(dataValues)
-
   const handleData = (data) => {
     sendData(data);
   };

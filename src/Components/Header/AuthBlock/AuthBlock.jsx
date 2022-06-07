@@ -8,7 +8,7 @@ const AuthBlock = () => {
   return (
     <div className={style.wrapper}>
       <NavLink to="/register">
-        <Button type="primary">Зарегистрироваться</Button>
+        <Button className={style.link} type="primary">Зарегистрироваться</Button>
       </NavLink>
       <NavLink to="/login">
         <Button type="primary">Войти</Button>
